@@ -1,0 +1,27 @@
+<ion-view view-title="Continuous GPS">
+  <ion-content padding="true">
+    <button class="button button-block button-balanced" ng-if="!(data.webviewStop || data.nativeStop)" ng-click="start()"><i class="ion-start"></i> Start Continuous</button>
+
+    <div ng-if="error">
+      <div class="list">
+        <div class="item item-assertive">{{error}}</div>
+      </div>
+    </div>
+
+    <div ng-if="data.webviewcoords">
+      <div class="row">
+        <h5 class="col-50">{{data.webviewPosition.timestamp}}</h5>
+        <button class="col-50 button button-energized"  ng-if="data.webviewStop" ng-click="stopWebview()"><i class="ion-stop"></i> Stop Webview</button>
+      </div>
+      <coordinates-output coordinates="data.webviewcoords" limited="true"></coordinates-output>
+    </div>
+
+    <div ng-if="data.nativecoords">
+      <div class="row">
+        <h5 class="col-50">{{data.nativePosition.timestamp}}</h5>
+        <button class="col-50 button button-energized" ng-if="data.nativeStop" ng-click="stopNative()"><i class="ion-stop"></i> Stop Native</button>
+      </div>
+      <coordinates-output coordinates="data.nativecoords" limited="true"></coordinates-output>
+    </div>
+  </ion-content>
+</ion-view>

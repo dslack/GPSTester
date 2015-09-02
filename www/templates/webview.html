@@ -1,0 +1,19 @@
+<ion-view view-title="Webview GPS">
+  <ion-content padding="true">
+    <button class="button button-block button-balanced" ng-click="getWebviewGPS()"><i class="ion-android-globe"></i> Get GPS Using Cordova</button>
+
+    <div ng-if="error">
+      <div class="list">
+        <div class="item item-assertive">{{error}}</div>
+      </div>
+    </div>
+
+    <div ng-if="data.retrieving">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div ng-if="data.position.coords">
+      <coordinates-output coordinates="data.position.coords"></coordinates-output>
+    </div>
+  </ion-content>
+</ion-view>

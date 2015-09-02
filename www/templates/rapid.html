@@ -1,0 +1,25 @@
+<ion-view view-title="Rapid Fire GPS">
+  <ion-content padding="true">
+    <button class="button button-block button-balanced" ng-click="rapidFire()"><i class="ion-android-globe"></i> Rapid Fire GPS</button>
+
+    <ion-checkbox ng-model="data.webview">Use Webview</ion-checkbox>
+    <ion-checkbox ng-model="data.turnOnWatch">Turn on Continuous</ion-checkbox>
+
+    <div ng-if="error">
+      <div class="list">
+        <div class="item item-assertive">{{error}}</div>
+      </div>
+    </div>
+
+    <div ng-if="data.retrieving">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div ng-if="data.positions.length > 0">
+      <div ng-repeat="position in data.positions">
+        <h4>Location #{{$index}}</h4>
+        <coordinates-output coordinates="position.coords" limited="true"></coordinates-output>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="Single GPS">
+  <ion-content padding="true">
+    <button class="button button-block button-balanced" ng-click="getNativeGPS()"><i class="ion-android-globe"></i> Get GPS Using Native</button>
+    <button class="button button-block button-balanced" ng-click="getWebviewGPS()"><i class="ion-android-globe"></i> Get GPS Using Webview</button>
+    <ion-checkbox ng-model="data.limited">Limited GPS Details</ion-checkbox>
+
+    <div ng-if="error">
+      <div class="list">
+        <div class="item item-assertive">{{error}}</div>
+      </div>
+    </div>
+
+    <div ng-if="data.retrieving">
+      <ion-spinner></ion-spinner>
+    </div>
+
+    <div ng-if="data.webviewPosition.coords">
+      <h5>Web View Coordinates</h5>
+      <coordinates-output coordinates="data.webviewPosition.coords" limited="{{data.limited}}"></coordinates-output>
+    </div>
+    <br/>
+    <div ng-if="data.nativePosition.coords">
+      <h5>Native Coordinates</h5>
+      <coordinates-output coordinates="data.nativePosition.coords" limited="{{data.limited}}"></coordinates-output>
+    </div>
+  </ion-content>
+</ion-view>

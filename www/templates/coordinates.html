@@ -1,0 +1,9 @@
+<ion-list>
+  <ion-item>Latitude: {{coordinates.latitude}}</ion-item>
+  <ion-item class="item">Longitude: {{coordinates.longitude}}</ion-item>
+  <ion-item class="item" ng-hide="limited">Altitude: {{coordinates.altitude}}</ion-item>
+  <ion-item class="item">Accuracy: {{coordinates.accuracy}} metres</ion-item>
+  <ion-item class="item" ng-hide="limited">Altitude Accuracy: {{coordinates.altitudeAccuracy}} metres</ion-item>
+  <ion-item class="item" ng-hide="limited">Heading: {{coordinates.heading}} degress</ion-item>
+  <ion-item class="item" ng-hide="limited">Speed: {{coordinates.speed}} m/s</ion-item>
+</ion-list>
