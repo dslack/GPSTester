@@ -1,4 +1,4 @@
-angular.module('gps.controllers', [])
+angular.module('gps.controllers', ['location-retriever'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 })
@@ -117,9 +117,21 @@ angular.module('gps.controllers', [])
     }
   })
 
-.controller('SingleGPSCtrl', function($scope, GPSRetrieval) {
+.controller('SingleGPSCtrl', function($scope, LocationRetriever) {
     $scope.data = {};
-    $scope.getNativeGPS = function(){
+    $scope.getGPS = function(){
+      LocationRetriever.retrieveLocation().then(function(position){
+        $scope.data.position = position;
+      })
+        .catch(function(err){
+          $scope.error = err.message;
+        })
+        .finally (function(){
+        $scope.data.retrieving = false;
+      });
+    };
+
+    /*$scope.getNativeGPS = function(){
       $scope.data.retrieving = true;
       $scope.data.nativePosition = null;
       GPSRetrieval.getNativeGPS().then(function(position){
@@ -145,5 +157,5 @@ angular.module('gps.controllers', [])
         .finally (function(){
         $scope.data.retrieving = false;
       });
-    }
+    }*/
 });
